@@ -8,7 +8,7 @@ services:
     restart: unless-stopped
     environment:
       # URL publique d'accès (ex: https://coffre-fort.kapkali.com)
-      - DOMAIN=${DOMAIN:-https://coffre-fort.kapkali.com}
+      - DOMAIN=${DOMAIN}
       # Autorise les inscriptions pour créer le premier compte admin.
       # À passer impérativement à 'false' une fois votre compte créé !
       - SIGNUPS_ALLOWED=${SIGNUPS_ALLOWED:-true}
