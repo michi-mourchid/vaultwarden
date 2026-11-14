@@ -1,6 +1,6 @@
 /**
  * ==============================================================================
- * GESTIONNAIRE MDP | CFAM976 - Personnalisation du titre d'onglet
+ * GESTIONNAIRE DE MOTS DE PASSE - PERSONNALISATION DU TITRE D'ONGLET
  * ==============================================================================
  * Sécurité :
  * - Servi en local depuis 'self' : 100% conforme à la Content-Security-Policy (CSP).
@@ -10,8 +10,8 @@
  * ==============================================================================
  */
 (function () {
-  const APP_NAME_FULL = "Gestionnaire MDP | CFAM976";
-  const BRAND_SHORT = "CFAM976";
+  const APP_NAME_FULL = "Coffre-fort Numérique";
+  const BRAND_SHORT = "Coffre-fort";
 
   function applyCustomTitle() {
     const currentTitle = document.title;

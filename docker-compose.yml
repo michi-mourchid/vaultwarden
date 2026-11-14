@@ -22,8 +22,8 @@ services:
       # ------------------------------------------------------------------------
       # BRANDING & TITRE (Templatisable via .env)
       # ------------------------------------------------------------------------
-      - APP_NAME=${APP_NAME:-Gestionnaire MDP | CFAM976}
-      - BRAND_SHORT=${BRAND_SHORT:-CFAM976}
+      - APP_NAME=${APP_NAME:-Coffre-fort Numérique}
+      - BRAND_SHORT=${BRAND_SHORT:-Coffre-fort}
 
       # ------------------------------------------------------------------------
       # CHARTE GRAPHIQUE & COULEURS (Templatisable via .env)
@@ -39,6 +39,10 @@ services:
       - COLOR_LIGHT=${COLOR_LIGHT:-#F4F4F5}
       # Fond neutre blanc (conteneurs & cartes)
       - COLOR_WHITE=${COLOR_WHITE:-#FFFFFF}
+
+      # Noms des fichiers logos (dans custom/branding/)
+      - LOGO_MAIN=${LOGO_MAIN:-logo.svg}
+      - LOGO_ICON=${LOGO_ICON:-logo-icon.svg}
 
       # Dossier où sont compilés les templates SCSS dynamiques
       - TEMPLATES_FOLDER=/app/templates

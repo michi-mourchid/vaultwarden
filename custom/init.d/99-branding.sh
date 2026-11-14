@@ -4,9 +4,9 @@
 # Execute automatiquement par /docker/start.sh au lancement du conteneur
 # ==============================================================================
 
-# 1. Variables par defaut (Charte CFAM976) si non specifiees dans l'environnement
-APP_NAME="${APP_NAME:-Gestionnaire MDP | CFAM976}"
-BRAND_SHORT="${BRAND_SHORT:-CFAM976}"
+# 1. Variables par defaut si non specifiees dans l'environnement
+APP_NAME="${APP_NAME:-Coffre-fort Numérique}"
+BRAND_SHORT="${BRAND_SHORT:-Coffre-fort}"
 
 COLOR_PRIMARY="${COLOR_PRIMARY:-#FF7F00}"
 COLOR_PRIMARY_HOVER="${COLOR_PRIMARY_HOVER:-#E06F00}"
@@ -14,6 +14,9 @@ COLOR_HEADER="${COLOR_HEADER:-#110979}"
 COLOR_DARK="${COLOR_DARK:-#0B0654}"
 COLOR_LIGHT="${COLOR_LIGHT:-#F4F4F5}"
 COLOR_WHITE="${COLOR_WHITE:-#FFFFFF}"
+
+LOGO_MAIN="${LOGO_MAIN:-logo.svg}"
+LOGO_ICON="${LOGO_ICON:-logo-icon.svg}"
 
 # 2. Generation dynamique du SCSS dans /app/templates (lu par Vaultwarden)
 mkdir -p /app/templates/scss
@@ -25,6 +28,8 @@ if [ -f /custom/templates/scss/user.vaultwarden.scss.template ]; then
         -e "s|__COLOR_DARK__|${COLOR_DARK}|g" \
         -e "s|__COLOR_LIGHT__|${COLOR_LIGHT}|g" \
         -e "s|__COLOR_WHITE__|${COLOR_WHITE}|g" \
+        -e "s|__LOGO_MAIN__|${LOGO_MAIN}|g" \
+        -e "s|__LOGO_ICON__|${LOGO_ICON}|g" \
         /custom/templates/scss/user.vaultwarden.scss.template > /app/templates/scss/user.vaultwarden.scss.hbs
 fi
 

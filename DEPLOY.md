@@ -11,8 +11,8 @@ Assurez-vous que votre sous-domaine (ex: `coffre-fort.kapkali.com`) pointe vers 
 
 ## 2. Déploiement sur le serveur
 
-### Déploiement par défaut (CFAM976)
-Rien à configurer, les valeurs de domaine, le thème CFAM976 et le titre dynamique sont déjà prêts :
+### Déploiement standard (Prêt à l'emploi)
+Les valeurs par défaut permettent un démarrage immédiat :
 
 ```bash
 git clone https://github.com/michi-mourchid/vaultwarden.git coffre-fort

@@ -11,8 +11,8 @@ $color-light: __COLOR_LIGHT__;
 $color-white: __COLOR_WHITE__;
 
 // Chemins des logos normés
-$logo-main: url('/images/custom/logo.svg');
-$logo-icon: url('/images/custom/logo-icon.svg');
+$logo-main: url('/images/custom/__LOGO_MAIN__');
+$logo-icon: url('/images/custom/__LOGO_ICON__');
 
 // 1. Surcharge des variables CSS globales de l'application
 :root {
@@ -99,7 +99,7 @@ input:focus,
 select:focus,
 textarea:focus {
   border-color: $color-primary !important;
-  box-shadow: 0 0 0 0.2rem rgba(255, 127, 0, 0.25) !important;
+  box-shadow: 0 0 0 0.2rem rgba($color-primary, 0.25) !important;
 }
 
 input[type="checkbox"]:checked,
