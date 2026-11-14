@@ -1,0 +1,155 @@
+/* ==============================================================================
+ * CHARTE GRAPHIQUE TEMPLATISÉE (Générée automatiquement par l'environnement)
+ * ============================================================================== */
+
+// --- Variables SCSS injectées dynamiquement depuis l'environnement ---
+$color-primary: __COLOR_PRIMARY__;
+$color-primary-hover: __COLOR_PRIMARY_HOVER__;
+$color-header: __COLOR_HEADER__;
+$color-dark: __COLOR_DARK__;
+$color-light: __COLOR_LIGHT__;
+$color-white: __COLOR_WHITE__;
+
+// Chemins des logos normés
+$logo-main: url('/images/custom/logo.svg');
+$logo-icon: url('/images/custom/logo-icon.svg');
+
+// 1. Surcharge des variables CSS globales de l'application
+:root {
+  --primary: #{$color-primary} !important;
+  --primary-hover: #{$color-primary-hover} !important;
+  --primary-contrast: #{$color-white} !important;
+  --theme-primary: #{$color-primary} !important;
+  --theme-primary-hover: #{$color-primary-hover} !important;
+  --theme-primary-contrast: #{$color-white} !important;
+  --bs-primary: #{$color-primary} !important;
+}
+
+// 2. Boutons d'Action Principaux (CTA)
+button.btn-primary,
+.btn-primary,
+button[type="submit"],
+bit-button[buttontype="primary"] button,
+bit-button[buttonType="primary"] button,
+.bit-button-primary button {
+  background-color: $color-primary !important;
+  border-color: $color-primary !important;
+  color: $color-white !important;
+  font-weight: 600 !important;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: $color-primary-hover !important;
+    border-color: $color-primary-hover !important;
+    color: $color-white !important;
+  }
+}
+
+// 3. Liens au survol
+a:hover,
+button.btn-link:hover {
+  color: $color-primary !important;
+}
+
+// 4. Structure & Grands Titres
+h1, h2, h3,
+.h1, .h2, .h3,
+.heading-1, .heading-2 {
+  color: $color-header !important;
+  font-weight: 700 !important;
+}
+
+// 5. En-tête / Barre de Navigation (Structure & Prestige)
+app-header,
+bit-navigation,
+nav.navbar,
+header.header {
+  background-color: $color-header !important;
+  border-bottom: 3px solid $color-primary !important;
+
+  // Liens de navigation actifs
+  .nav-link.active,
+  bit-nav-item[active="true"] {
+    border-left-color: $color-primary !important;
+    color: $color-primary !important;
+  }
+}
+
+// 6. Badges de Catégorie & Bordures de Mise en Avant
+.badge-primary,
+.badge-info,
+bit-badge[type="primary"],
+.badge {
+  background-color: $color-primary !important;
+  color: $color-white !important;
+}
+
+.border-primary,
+.highlight-border {
+  border-color: $color-primary !important;
+}
+
+// 7. Focus et Sélections
+*:focus-visible {
+  outline-color: $color-primary !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: $color-primary !important;
+  box-shadow: 0 0 0 0.2rem rgba(255, 127, 0, 0.25) !important;
+}
+
+input[type="checkbox"]:checked,
+input[type="radio"]:checked {
+  background-color: $color-primary !important;
+  border-color: $color-primary !important;
+}
+
+// 8. Remplacement du Logo par la Nomenclature Normée
+// A. Écran de chargement initial (Splash screen)
+app-root img.new-logo-themed {
+  content: $logo-icon !important;
+  width: 64px !important;
+  height: 64px !important;
+}
+
+// B. Logo de la page de Connexion / Accueil
+auth-anon-layout > main > div > a > bit-icon > svg,
+auth-anon-layout bit-landing-header bit-svg > svg,
+.auth-logo svg {
+  display: none !important;
+}
+
+auth-anon-layout > main > div > a > bit-icon::before,
+auth-anon-layout bit-landing-header bit-svg::before,
+.auth-logo::before {
+  display: block !important;
+  content: "" !important;
+  width: 240px !important;
+  height: 48px !important;
+  background-image: $logo-main !important;
+  background-repeat: no-repeat !important;
+  background-position: center left !important;
+  background-size: contain !important;
+}
+
+// C. Logo de la barre de navigation intérieure
+bit-navigation .logo,
+app-header .logo {
+  img, svg {
+    display: none !important;
+  }
+  &::before {
+    display: inline-block !important;
+    content: "" !important;
+    width: 170px !important;
+    height: 36px !important;
+    background-image: $logo-main !important;
+    background-repeat: no-repeat !important;
+    background-size: contain !important;
+    vertical-align: middle !important;
+  }
+}

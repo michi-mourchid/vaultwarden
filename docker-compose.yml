@@ -18,17 +18,39 @@ services:
       - ENABLE_WEBSOCKET=${ENABLE_WEBSOCKET:-true}
       # Token d'administration /admin (laisser vide pour désactiver totalement la page /admin)
       - ADMIN_TOKEN=${ADMIN_TOKEN:-}
-      # Dossier des templates SCSS & Branding CFAM976
-      - TEMPLATES_FOLDER=/custom/templates
+
+      # ------------------------------------------------------------------------
+      # BRANDING & TITRE (Templatisable via .env)
+      # ------------------------------------------------------------------------
+      - APP_NAME=${APP_NAME:-Gestionnaire MDP | CFAM976}
+      - BRAND_SHORT=${BRAND_SHORT:-CFAM976}
+
+      # ------------------------------------------------------------------------
+      # CHARTE GRAPHIQUE & COULEURS (Templatisable via .env)
+      # ------------------------------------------------------------------------
+      # Action principale & Boutons CTA
+      - COLOR_PRIMARY=${COLOR_PRIMARY:-#FF7F00}
+      - COLOR_PRIMARY_HOVER=${COLOR_PRIMARY_HOVER:-#E06F00}
+      # Structure, Grands titres & En-tête de navigation
+      - COLOR_HEADER=${COLOR_HEADER:-#110979}
+      # Fond sombre & Footer
+      - COLOR_DARK=${COLOR_DARK:-#0B0654}
+      # Fond neutre clair (alterné)
+      - COLOR_LIGHT=${COLOR_LIGHT:-#F4F4F5}
+      # Fond neutre blanc (conteneurs & cartes)
+      - COLOR_WHITE=${COLOR_WHITE:-#FFFFFF}
+
+      # Dossier où sont compilés les templates SCSS dynamiques
+      - TEMPLATES_FOLDER=/app/templates
     volumes:
-      # Stockage persistant des coffres et bases de données
+      # Stockage persistant des données chiffrées
       - ${DATA_VOLUME:-vw_data}:/data
-      # Templates SCSS personnalisés (Thème CFAM976)
+      # Dossier des modèles SCSS
       - ./custom/templates:/custom/templates:ro
-      # Logos et actifs statiques servis directement par le Web Vault (conforme CSP 'self')
+      # Logos servis en direct par le Web Vault (conforme CSP 'self')
       - ./custom/branding:/web-vault/images/custom:ro
       - ./custom/branding:/custom/branding:ro
-      # Script de démarrage pour l'injection automatique du titre personnalisé
+      # Script d'injection dynamique au boot du conteneur
       - ./custom/init.d:/etc/vaultwarden.d:ro
     networks:
       - web-network
