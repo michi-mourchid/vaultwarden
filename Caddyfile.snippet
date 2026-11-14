@@ -1,0 +1,9 @@
+# Bloc à copier dans le Caddyfile de votre proxy Caddy :
+# Remplacez {$DOMAIN:coffre-fort.kapkali.com} par votre domaine si différent.
+
+coffre-fort.kapkali.com {
+    import security_headers
+    encode gzip zstd
+
+    reverse_proxy vaultwarden:80
+}

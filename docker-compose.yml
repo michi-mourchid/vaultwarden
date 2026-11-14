@@ -1,0 +1,53 @@
+# ==============================================================================
+# VAULTWARDEN - DEPLOIEMENT DOCKER POUR SERVEUR REVERSE-PROXY (CADDY)
+# ==============================================================================
+services:
+  vaultwarden:
+    image: ${VAULTWARDEN_IMAGE:-vaultwarden/server:latest}
+    container_name: ${CONTAINER_NAME:-vaultwarden}
+    restart: unless-stopped
+    environment:
+      # URL publique d'accès (ex: https://coffre-fort.kapkali.com)
+      - DOMAIN=${DOMAIN:-https://coffre-fort.kapkali.com}
+      # Autorise les inscriptions pour créer le premier compte admin.
+      # À passer impérativement à 'false' une fois votre compte créé !
+      - SIGNUPS_ALLOWED=${SIGNUPS_ALLOWED:-true}
+      - INVITATIONS_ALLOWED=${INVITATIONS_ALLOWED:-true}
+      - SHOW_PASSWORD_HINT=${SHOW_PASSWORD_HINT:-false}
+      # WebSocket pour la synchronisation en temps réel des extensions et applications
+      - ENABLE_WEBSOCKET=${ENABLE_WEBSOCKET:-true}
+      # Token d'administration /admin (laisser vide pour désactiver totalement la page /admin)
+      - ADMIN_TOKEN=${ADMIN_TOKEN:-}
+    volumes:
+      - ${DATA_VOLUME:-vw_data}:/data
+    networks:
+      - web-network
+    deploy:
+      resources:
+        limits:
+          cpus: "0.50"
+          memory: 512M
+        reservations:
+          cpus: "0.05"
+          memory: 64M
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+# ==============================================================================
+# RESEAUX
+# ==============================================================================
+networks:
+  # Connexion directe au réseau externe du proxy Caddy
+  web-network:
+    external: true
+    name: ${WEB_NETWORK:-web-network}
+
+# ==============================================================================
+# VOLUMES
+# ==============================================================================
+volumes:
+  vw_data:
+    name: ${DATA_VOLUME:-vw_data}
