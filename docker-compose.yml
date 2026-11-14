@@ -8,7 +8,7 @@ services:
     restart: unless-stopped
     environment:
       # URL publique d'accès (ex: https://coffre-fort.kapkali.com)
-      - DOMAIN=${DOMAIN}
+      - DOMAIN=${DOMAIN:-https://coffre-fort.kapkali.com}
       # Autorise les inscriptions pour créer le premier compte admin.
       # À passer impérativement à 'false' une fois votre compte créé !
       - SIGNUPS_ALLOWED=${SIGNUPS_ALLOWED:-true}
@@ -18,8 +18,18 @@ services:
       - ENABLE_WEBSOCKET=${ENABLE_WEBSOCKET:-true}
       # Token d'administration /admin (laisser vide pour désactiver totalement la page /admin)
       - ADMIN_TOKEN=${ADMIN_TOKEN:-}
+      # Dossier des templates SCSS & Branding CFAM976
+      - TEMPLATES_FOLDER=/custom/templates
     volumes:
+      # Stockage persistant des coffres et bases de données
       - ${DATA_VOLUME:-vw_data}:/data
+      # Templates SCSS personnalisés (Thème CFAM976)
+      - ./custom/templates:/custom/templates:ro
+      # Logos et actifs statiques servis directement par le Web Vault (conforme CSP 'self')
+      - ./custom/branding:/web-vault/images/custom:ro
+      - ./custom/branding:/custom/branding:ro
+      # Script de démarrage pour l'injection automatique du titre personnalisé
+      - ./custom/init.d:/etc/vaultwarden.d:ro
     networks:
       - web-network
     deploy:

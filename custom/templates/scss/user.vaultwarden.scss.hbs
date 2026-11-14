@@ -1,0 +1,163 @@
+/* ==============================================================================
+ * CHARTE GRAPHIQUE OFFICIELLE CFAM976
+ * ==============================================================================
+ * Rôles et Palette de Couleurs :
+ * - Primaire (Action & Chaleur)     : Orange CFAM (#FF7F00)
+ * - Primaire (Structure & Prestige) : Bleu Nuit CFAM (#110979)
+ * - Fond Sombre                     : Bleu Nuit Profond (#0B0654)
+ * - Fond Neutre Clair               : Gris Clair (#F4F4F5)
+ * - Fond Neutre Blanc               : Blanc Pur (#FFFFFF)
+ * ============================================================================== */
+
+// --- Variables SCSS ---
+$cfam-orange: #FF7F00;
+$cfam-orange-hover: #E06F00;
+$cfam-blue: #110979;
+$cfam-blue-dark: #0B0654;
+$cfam-gray-light: #F4F4F5;
+$cfam-white: #FFFFFF;
+
+// Chemins des logos normés
+$cfam-logo-main: url('/images/custom/logo.svg');
+$cfam-logo-icon: url('/images/custom/logo-icon.svg');
+
+// 1. Surcharge des variables CSS globales de l'application Bitwarden / Vaultwarden
+:root {
+  --primary: #{$cfam-orange} !important;
+  --primary-hover: #{$cfam-orange-hover} !important;
+  --primary-contrast: #{$cfam-white} !important;
+  --theme-primary: #{$cfam-orange} !important;
+  --theme-primary-hover: #{$cfam-orange-hover} !important;
+  --theme-primary-contrast: #{$cfam-white} !important;
+  --bs-primary: #{$cfam-orange} !important;
+  --bs-primary-rgb: 255, 127, 0 !important;
+}
+
+// 2. Boutons d'Action Principaux (CTA) - Orange CFAM
+button.btn-primary,
+.btn-primary,
+button[type="submit"],
+bit-button[buttontype="primary"] button,
+bit-button[buttonType="primary"] button,
+.bit-button-primary button {
+  background-color: $cfam-orange !important;
+  border-color: $cfam-orange !important;
+  color: $cfam-white !important;
+  font-weight: 600 !important;
+
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: $cfam-orange-hover !important;
+    border-color: $cfam-orange-hover !important;
+    color: $cfam-white !important;
+  }
+}
+
+// 3. Liens au survol
+a:hover,
+button.btn-link:hover {
+  color: $cfam-orange !important;
+}
+
+// 4. Structure & Grands Titres - Bleu Nuit CFAM
+h1, h2, h3,
+.h1, .h2, .h3,
+.heading-1, .heading-2 {
+  color: $cfam-blue !important;
+  font-weight: 700 !important;
+}
+
+// 5. En-tête / Barre de Navigation (Structure & Prestige)
+app-header,
+bit-navigation,
+nav.navbar,
+header.header {
+  background-color: $cfam-blue !important;
+  border-bottom: 3px solid $cfam-orange !important;
+
+  // Liens de navigation actifs
+  .nav-link.active,
+  bit-nav-item[active="true"] {
+    border-left-color: $cfam-orange !important;
+    color: $cfam-orange !important;
+  }
+}
+
+// 6. Badges de Catégorie & Bordures de Mise en Avant
+.badge-primary,
+.badge-info,
+bit-badge[type="primary"],
+.badge {
+  background-color: $cfam-orange !important;
+  color: $cfam-white !important;
+}
+
+.border-primary,
+.highlight-border {
+  border-color: $cfam-orange !important;
+}
+
+// 7. Focus et Sélections
+*:focus-visible {
+  outline-color: $cfam-orange !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: $cfam-orange !important;
+  box-shadow: 0 0 0 0.2rem rgba(255, 127, 0, 0.25) !important;
+}
+
+input[type="checkbox"]:checked,
+input[type="radio"]:checked {
+  background-color: $cfam-orange !important;
+  border-color: $cfam-orange !important;
+}
+
+// 8. Remplacement du Logo par la Nomenclature Normée CFAM976
+// A. Écran de chargement initial (Splash screen)
+app-root img.new-logo-themed {
+  content: $cfam-logo-icon !important;
+  width: 64px !important;
+  height: 64px !important;
+}
+
+// B. Logo de la page de Connexion / Accueil
+auth-anon-layout > main > div > a > bit-icon > svg,
+auth-anon-layout bit-landing-header bit-svg > svg,
+.auth-logo svg {
+  display: none !important;
+}
+
+auth-anon-layout > main > div > a > bit-icon::before,
+auth-anon-layout bit-landing-header bit-svg::before,
+.auth-logo::before {
+  display: block !important;
+  content: "" !important;
+  width: 240px !important;
+  height: 48px !important;
+  background-image: $cfam-logo-main !important;
+  background-repeat: no-repeat !important;
+  background-position: center left !important;
+  background-size: contain !important;
+}
+
+// C. Logo de la barre de navigation intérieure
+bit-navigation .logo,
+app-header .logo {
+  img, svg {
+    display: none !important;
+  }
+  &::before {
+    display: inline-block !important;
+    content: "" !important;
+    width: 170px !important;
+    height: 36px !important;
+    background-image: $cfam-logo-main !important;
+    background-repeat: no-repeat !important;
+    background-size: contain !important;
+    vertical-align: middle !important;
+  }
+}
